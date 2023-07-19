@@ -1,0 +1,5 @@
+PostsSlice
+Store
+
+Form -> dispatch to get (write) data to store
+PostList -> useSelector to get (read) data to do something like props

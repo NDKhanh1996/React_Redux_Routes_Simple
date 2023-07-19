@@ -2,31 +2,30 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from "@mui/material/Button";
 import {useNavigate} from 'react-router-dom';
-import {useSelector, useDispatch} from 'react-redux'
-import {getTitle, getContent} from '../features/postsSlice'
-import { useState } from 'react';
+import {useDispatch} from 'react-redux'
+import {addPost, deletePost} from '../features/postsSlice'
+import {useState} from 'react';
 
 export default function MultilineTextFields() {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
-    // const dispatch = useDispatch();
-    // const navigate = useNavigate();
 
     const returnToHome = () => {
-        // dispatch(getTitle(title));
-        // dispatch(getContent(content));
+        const newPost = { title, content };
+        dispatch(addPost(newPost));
         navigate('/');
     };
 
     return (
         <Box
-            component="form"
             sx={{
                 '& .MuiTextField-root': {m: 1, width: '25ch'},
             }}
             noValidate
             autoComplete="off"
-            method="POST"
         >
             <div>
                 <TextField
@@ -48,7 +47,7 @@ export default function MultilineTextFields() {
                     onChange={(event) => setContent(event.target.value)}
                 />
             </div>
-            <Button variant="contained" color="success" type="submit" onClick={returnToHome} sx={{marginLeft: '10px'}}>
+            <Button variant="contained" color="success" onClick={returnToHome} sx={{marginLeft: '10px'}}>
                 Submit
             </Button>
         </Box>
