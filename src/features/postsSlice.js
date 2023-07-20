@@ -6,7 +6,7 @@ export const postsSlice = createSlice({
         posts: [],
     },
     reducers: {
-        addPost: (state, action) => {
+        addPost: (state, action) => { // state = initialState
             state.posts.push(action.payload);
         },
         deletePost: (state, action) => {
